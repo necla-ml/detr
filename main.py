@@ -173,9 +173,7 @@ def main(args):
         if True:
             # Create from ml-vision instead
             from ml.vision.models.detection.detr import detr
-            backbone = 'resnet50'
-            backbone = 'resnet101' if 'r101' in args.resume else backbone
-            m = detr(pretrained=True, backbone=backbone, deformable=False, unload_after=not True)
+            m = detr(pretrained=True, backbone=args.backbone, deformable=False, unload_after=True)
             model_without_ddp.load_state_dict(m.state_dict())
         else:
             if args.resume.startswith('https'):
